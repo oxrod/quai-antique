@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello FullMenuController!{% endblock %}
+
+{% block body %}
+    <main>
+        <h1 class="m-3 text-center all-meals">Tous nos plats</h1>
+        <hr class="mx-auto all-meals-underline">
+        <section>
+            <div class="row d-flex justify-content-around gx-0">
+                {% for dish in dishes %}
+                    <div class="card col-sm-6 m-1 w-auto mb-5">
+                        <div class="card-body">
+                            <h5 class="card-title fs-2">{{ dish.title }}</h5>
+                            <p class="card-text">{{ dish.description }}</p>
+                            <p>{{ dish.price }}</p>
+                        </div>
+                        <div class="card-footer text-end">Catégorie : {{ dish.category }}</div>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+    </main>
+{% endblock %}

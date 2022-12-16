@@ -1,0 +1,73 @@
+/**
+    -- GLOBALS --
+*/
+h1 {
+    font-family: 'Cormorant Upright', serif;
+}
+
+h2, h3, h4, h5, h6 {
+    font-family: 'Josefin Slab', serif;
+}
+
+a {
+    cursor: pointer;
+}
+
+body {
+    font-family: 'Nutito Sans', serif;
+    overflow-x: hidden;
+}
+
+card {
+    --bs-gutter-x: 0;
+}
+
+/**
+    -- HOMEPAGE --
+ */
+.navbar-right {
+    display: flex;
+    align-items: center;
+}
+
+.connect-button {
+    text-decoration: underline;
+    font-family: 'Nunito Sans', serif;
+    font-size: 95%;
+    font-weight: lighter;
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.connect-button:hover {
+    color: rgba(0, 0, 0, 0.9);
+}
+
+.book-table {
+    font-family: 'Nunito Sans', serif;
+    padding: 0.5rem;
+    border: #B0413E 1px solid;
+    border-radius: 5px;
+    color: white;
+    background-color: #B0413E;
+    text-decoration: none;
+}
+
+.book-table:hover {
+    filter: brightness(0.95);
+    color: white;
+}
+
+.book-table:active {
+    scale: 0.95;
+}
+
+.featured {
+    font-size: 4rem;
+}
+
+/**
+    -- ALL MEALS PAGE --
+ */
+.all-meals-underline {
+    width:100px;
+}
