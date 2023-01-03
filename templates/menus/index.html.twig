@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Quai Antique | Tous nos menus{% endblock %}
+
+{% block body %}
+    <h1 class="m-3 text-center all-meals">Tous nos menus</h1>
+    <hr class="mx-auto custom-title-underline">
+    <div class="d-flex flex-column align-items-center">
+        <div
+                class=" menus-container
+                        text-center w-75"
+        >
+            {% for menu in menus %}
+                <div class="menu-item mb-4 pb-3">
+                    <h1 class="mb-0 mt-1">
+                        {{ menu.title }}
+                        <hr class="mx-auto custom-title-underline">
+                    </h1>
+                    {% for formula in menu.formulas %}
+                        <div class="formula-item w-50 mx-auto mb-2">
+                            <h1>{{ formula.title }}</h1>
+                            <p>{{ formula.description }}</p>
+                            <p>{{ formula.price }} €</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
