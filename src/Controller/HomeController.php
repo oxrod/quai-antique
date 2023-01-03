@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Dish;
 use Doctrine\Persistence\ManagerRegistry;
+use Faker\Factory;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,7 +14,11 @@ class HomeController extends AbstractController
     #[Route('/', name: 'app_home')]
     public function index(ManagerRegistry $managerRegistry): Response
     {
+        // ONLY FOR DEBUG PURPOSES
+        $faker = Factory::create();
+        $testFakeImage = $faker->imageUrl();
         return $this->render('home/index.html.twig', [
+            'testImage' => $testFakeImage
         ]);
     }
 

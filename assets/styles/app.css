@@ -28,6 +28,7 @@ card {
 .navbar-right {
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 .connect-button {
@@ -61,13 +62,71 @@ card {
     scale: 0.95;
 }
 
-.featured {
-    font-size: 4rem;
+.featured-items {
+    margin: 0 1.5rem;
+    /* TODO : REMOVE AFTER STYLING featured-items SECTION */
+    border: #B0413E 1px solid;
 }
 
+.carousel {
+    width: 70vw;
+}
+
+.carousel-item img {
+    border-radius: 0;
+    aspect-ratio: 16/9;
+}
+
+.carousel-item > .card {
+    border: none;
+    border-radius: 0;
+}
+
+/* Card title visible on hover */
+.card > .card-img-overlay {
+    opacity: 0;
+}
+.card:hover > .card-img-overlay {
+    transition-property: opacity;
+    transition-duration: 100ms;
+    opacity: 100%;
+    background: rgba(0,0,0, 50%);
+}
+
+footer {
+    background-color: #B0413E;
+    color: white;
+}
+
+.footer-links a {
+    color: white;
+}
+
+.footer-links a:hover {
+    color: white;
+}
+
+.schedule-table {
+    height: 350px;
+    width: 250px;
+    text-align: center;
+}
+
+.schedule-table th, .schedule-table td {
+    border: 1px white solid;
+}
+
+.custom-title-underline {
+    width:100px;
+}
 /**
     -- ALL MEALS PAGE --
  */
-.all-meals-underline {
-    width:100px;
+.menu-item {
+    border: 1px black solid;
+    border-radius: 3px;
+}
+.formula-item {
+    border: 1px gray solid;
+    border-radius: 2px;
 }
