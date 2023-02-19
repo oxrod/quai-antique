@@ -13,6 +13,8 @@
         "chart.js": "^3.4.1",
         "core-js": "^3.23.0",
         "jquery": "^3.6.3",
+        "react": "^18.0",
+        "react-dom": "^18.0",
         "regenerator-runtime": "^0.13.9",
         "sass": "^1.56.2",
         "sass-loader": "^13.2.0",
