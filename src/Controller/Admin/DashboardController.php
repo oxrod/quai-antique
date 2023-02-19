@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Allergy;
 use App\Entity\Category;
 use App\Entity\Dish;
 use App\Entity\Formula;
@@ -67,6 +68,7 @@ class DashboardController extends AbstractDashboardController
             MenuItem::section('Cuisine'),
             MenuItem::linkToCrud('Plats', 'fa-solid fa-fish', Dish::class),
             MenuItem::linkToCrud('Catégories', '', Category::class),
+            MenuItem::linkToCrud('Allergies', '', Allergy::class),
 
             MenuItem::section(('Horaires')),
             MenuItem::linkToCrud('Panneau horaires', '',Schedule::class)
