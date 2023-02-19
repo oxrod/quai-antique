@@ -7,14 +7,12 @@
         "@popperjs/core": "^2.11.6",
         "@symfony/stimulus-bridge": "^3.2.0",
         "@symfony/ux-chartjs": "file:vendor/symfony/ux-chartjs/assets",
+        "@symfony/ux-react": "file:vendor/symfony/ux-react/assets",
         "@symfony/webpack-encore": "^4.0.0",
-        "autoprefixer": "^10.4.13",
         "bootstrap": "^5.2.3",
         "chart.js": "^3.4.1",
         "core-js": "^3.23.0",
-        "jquery": "^3.6.2",
-        "postcss": "^8.4.20",
-        "postcss-loader": "^7.0.2",
+        "jquery": "^3.6.3",
         "regenerator-runtime": "^0.13.9",
         "sass": "^1.56.2",
         "sass-loader": "^13.2.0",
@@ -29,8 +27,5 @@
         "dev": "encore dev",
         "watch": "encore dev --watch",
         "build": "encore production --progress"
-    },
-    "dependencies": {
-        "prop-types": "^15.8.1"
     }
 }

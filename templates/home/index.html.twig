@@ -2,69 +2,104 @@
 
 {% block title %}Quai Antique | Restaurant Gastronomique de Rouen{% endblock %}
 
+{% block stylesheets %}
+    {{ encore_entry_link_tags('app') }}
+{% endblock %}
+
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+    {% endblock %}
+
 {% block body %}
+    {# Booking Modal #}
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+         aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Réserver une table</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" {{ stimulus_controller('say-hello') }}>
+                    {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
+                        <div class="alert alert-primary">
+                            Pour un formulaire prérempli avec vos données, pensez à vous
+                            <a href="{{ path('app_login') }}">connecter</a>
+                        </div>
+                    {% endif %}
+                    {{ form_start(booking_form, {'attr': {'id' : 'booking_form' ,'action' : '/booked'}}) }}
+                    {{ form_row(booking_form.name) }}
+                    {{ form_row(booking_form.cutleryNumber) }}
+                    <div {{ stimulus_target('say-hello', 'date') }}>
+                        {{ form_row(booking_form.date) }}
+                    </div>
+                    <div id="times" {{ stimulus_target('say-hello', 'output') }}>
+                        {{ form_row(booking_form.time) }}
+                    </div>
+                    <div>
+                        {% if userAllergies %}
+                            Voici les allergies déjà enregistrées :
+                            <ul>
+                                {% for allergie in userAllergies %}
+                                    <li>{{ allergie.name }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                        {{ form_row(booking_form.allergies) }}
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    {{ form_row(booking_form.submit) }}
+                </div>
+                {{ form_end(booking_form) }}
+            </div>
+        </div>
+    </div>
+    {# MODAL END #}
     <h1 class="mx-4 mt-4 mb-2">A l'affiche</h1>
     <section class="featured-items d-flex mb-2">
         <div id="carouselExampleIndicators" class="carousel slide m-0" data-bs-ride="true">
             <div class="carousel-indicators">
-                {#
-                for (featuredDish in featuredDishes) {
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{featuredDishId}}" class="active"
-                    aria-current="true" aria-label="Slide {{featuredDishId + 1}}"></button>
-                }
-                #}
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
-                        aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-                        aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-                        aria-label="Slide 3"></button>
+                {% for featuredDish in featuredDishes %}
+                    {% if loop.index0 is same as 0 %}
+                        <button type="button" data-bs-target="#carouselExampleIndicators"
+                                data-bs-slide-to="{{ loop.index0 }}"
+                                class="active"
+                                aria-label="Slide {{ loop.index0 }}"></button>
+                    {% else %}
+                        <button type="button" data-bs-target="#carouselExampleIndicators"
+                                data-bs-slide-to="{{ loop.index0 }}"
+                                aria-label="Slide {{ loop.index0 }}"></button>
+                    {% endif %}
+                {% endfor %}
             </div>
             <div class="carousel-inner">
-                {#
-                for (featuredDish in featuredDishes) {
-                    <div class="carousel-item active">
-                        <div class="card text-bg-dark">
-                            <img src="{{ featuredDish.image }}" class="card-img" alt="...">
-                            <div class="card-img-overlay">
-                                <h5 class="card-title">{{ featuredDish.name }}</h5>
-                                <p class="card-text">{{ featuredDish.desc }}</p>
-                                <p class="card-text">Catégorie : {{ featuredDish.category }}</p>
+                {% for featuredDish in featuredDishes %}
+                    {% if loop.index0 is same as 0 %}
+                        <div class="carousel-item active">
+                            <div class="card text-bg-dark">
+                                <img src="uploads/images/{{ featuredDish.image }}" class="card-img img-fluid" alt="...">
+                                <div class="card-img-overlay">
+                                    <h5 class="card-title">{{ featuredDish.title }}</h5>
+                                    <p class="card-text">{{ featuredDish.description }}</p>
+                                    <p class="card-text"><small>Catégorie : {{ featuredDish.category.label }}</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                }}
-                #}
-                <div class="carousel-item active">
-                    <div class="card text-bg-dark">
-                        <img src="{{ testImage }}" class="card-img img-fluid" alt="...">
-                        <div class="card-img-overlay">
-                            <h5 class="card-title">Sample plate</h5>
-                            <p class="card-text">A succulent plate made with much love.</p>
-                            <p class="card-text"><small>Last updated 3 mins ago</small></p>
+                    {% else %}
+                        <div class="carousel-item">
+                            <div class="card text-bg-dark">
+                                <img src="uploads/images/{{ featuredDish.image }}" class="card-img img-fluid" alt="...">
+                                <div class="card-img-overlay">
+                                    <h5 class="card-title">{{ featuredDish.title }}</h5>
+                                    <p class="card-text">{{ featuredDish.description }}</p>
+                                    <p class="card-text"><small>Catégorie : {{ featuredDish.category.label }}</p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="carousel-item active">
-                    <div class="card text-bg-dark">
-                        <img src="{{ testImage }}" class="card-img img-fluid" alt="...">
-                        <div class="card-img-overlay">
-                            <h5 class="card-title">Sample plate</h5>
-                            <p class="card-text">A succulent plate made with much love.</p>
-                            <p class="card-text"><small>Last updated 3 mins ago</small></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item active">
-                    <div class="card text-bg-dark">
-                        <img src="{{ testImage }}" class="card-img img-fluid" alt="...">
-                        <div class="card-img-overlay">
-                            <h5 class="card-title">Sample plate</h5>
-                            <p class="card-text">A succulent plate made with much love.</p>
-                            <p class="card-text"><small>Last updated 3 mins ago</small></p>
-                        </div>
-                    </div>
-                </div>
+                    {% endif %}
+                {% endfor %}
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
                     data-bs-slide="prev">
@@ -77,7 +112,7 @@
                 <span class="visually-hidden">Next</span>
             </button>
         </div>
-        <div class="p-3 d-flex flex-column mw-100">
+        <div id="selection" class="p-3">
             <h2 class="fw-bolder fs-1 m-2 mb-4">Notre sélection : </h2>
             <p class="px-3">Nos meilleurs plats du moment, à déguster sans attendre ! Ces plats changent régulièrement
                 en
@@ -92,67 +127,9 @@
     </section>
     <div class="d-flex justify-content-center align-items-center py-3 mb-3">
         <h2 class="p-0 m-0 fw-bolder">N'hésitez plus :</h2>
-        <a class="mx-2 book-table">Réserver une table</a>
+        <button class="mx-2 book-table" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Réserver une
+            table
+        </button>
     </div>
-    <footer class="py-3 d-flex">
-        {# Left part with schedules #}
-        <div class="d-flex flex-column align-items-center w-50">
-            {# TODO Récupérer les horaires dans la base #}
-            <h3 class="mb-2 fw-bolder">Nos horaires d'ouverture :</h3>
-            <table class="schedule-table">
-                <tbody>
-                <tr>
-                    <th>Lundi</th>
-                    <td>
-                        12:00-14:00<br>20:00-22:00
-                    </td>
-                </tr>
-                <tr>
-                    <th>Mardi</th>
-                    <td>
-                        12:00-14:00<br>20:00-22:00
-                    </td>
-                </tr>
-                <tr>
-                    <th>Mercredi</th>
-                    <td>
-                        Fermé
-                    </td>
-                </tr>
-                <tr>
-                    <th>Jeudi</th>
-                    <td>
-                        12:00-14:00<br>20:00-22:00
-                    </td>
-                </tr>
-                <tr>
-                    <th>Vendredi</th>
-                    <td>
-                        12:00-14:00<br>20:00-22:00
-                    </td>
-                </tr>
-                <tr>
-                    <th>Samedi</th>
-                    <td>
-                        19:00-23:00
-                    </td>
-                </tr>
-                <tr>
-                    <th>Dimanche</th>
-                    <td>
-                        12:00-14:00
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="footer-links d-flex flex-column align-items-center justify-content-around w-50">
-            <a href="#">Contactez-nous</a>
-            <a href="#">Notre politique <strong>fait maison</strong></a>
-            <a href="#">Votre avis nous intéresse</a>
-            <a href="#">Mentions légales</a>
-            <p class="copyright">© quai-antique.com | 2022</p>
-        </div>
-    </footer>
-
 {% endblock %}
+

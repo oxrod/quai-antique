@@ -1,24 +1,34 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello FullMenuController!{% endblock %}
+{% block title %}La carte | Quai Antique{% endblock %}
 
 {% block body %}
     <main>
         <h1 class="m-3 text-center all-meals">Tous nos plats</h1>
         <hr class="mx-auto custom-title-underline">
         <section>
-            <div class="row d-flex justify-content-around gx-0">
-                {% for dish in dishes %}
-                    <div class="card col-sm-6 m-1 w-auto mb-5">
-                        <div class="card-body">
-                            <h5 class="card-title fs-2">{{ dish.title }}</h5>
-                            <p class="card-text">{{ dish.description }}</p>
-                            <p>{{ dish.price }}</p>
-                        </div>
-                        <div class="card-footer text-end">Catégorie : {{ dish.category }}</div>
+            {% for category in categories %}
+                <div class="row d-flex justify-content-around gx-0 p-3">
+                    <h1>{{ category.label }}</h1>
+                    <div class="d-flex overflow-y-scroll">
+                        {% for dish in dishes %}
+                            {% if dish.category.name is same as category.name %}
+                                <div class="card dish-card col-sm-6">
+                                    <img class="card-img dish-image"
+                                         src="uploads/images/{{ dish.image }}"
+                                         alt="{{ dish.title }}"/>
+                                    <div class="card-body">
+                                        <h5 class="card-title fs-2">{{ dish.title }}</h5>
+                                        <p class="card-text">{{ dish.description }}</p>
+                                    </div>
+                                    <div class="card-footer">{{ dish.price }} €</div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
                     </div>
-                {% endfor %}
-            </div>
+                </div>
+            {% endfor %}
+
         </section>
     </main>
 {% endblock %}

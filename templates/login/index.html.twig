@@ -6,16 +6,26 @@
     {% if error %}
         <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
+    <div class="px-3 d-flex flex-column align-items-center">
+        <form class="mb-4 border p-2 w-auto m-auto d-flex flex-column align-items-center" action="{{ path('app_login') }}" method="post">
+            <h1 class="fw-light text-center">Se connecter</h1>
+            <fieldset class="mb-2">
+                <label for="username">Email : </label>
+                <input type="text" id="username" name="_username" value="{{ last_username }}">
+            </fieldset>
+            <fieldset class="mb-2">
+                <label for="password">Password :</label>
+                <input type="password" id="password" name="_password">
+            </fieldset>
 
-    <form action="{{ path('app_login') }}" method="post">
-        <label for="username">Email : </label>
-        <input type="text" id="username" name="_username" value="{{ last_username }}">
+            <input type="hidden" name="_target_path" value="/">
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+            <button class="book-table m-auto" type="submit">Connexion</button>
+        </form>
+        <p class="my-1">Pas encore de compte ?
+            <a class="book-table" href="/register">Créez-en un</a>
+            !
+        </p>
+    </div>
 
-        <label for="password">Password :</label>
-        <input type="password" id="password" name="_password">
-
-        <input type="hidden" name="_target_path" value="/">
-        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-        <button type="submit">Connexion</button>
-    </form>
 {% endblock %}

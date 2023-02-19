@@ -1,4 +1,5 @@
 import { Controller } from '@hotwired/stimulus';
+import React from 'react';
 
 /*
  * This is an example Stimulus controller!

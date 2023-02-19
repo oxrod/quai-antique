@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Category;
 use App\Entity\Dish;
+use App\Entity\Schedule;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,9 +18,13 @@ class FullMenuController extends AbstractController
         $em = $managerRegistry->getManager();
 
         $dishes = $em->getRepository(Dish::class)->findAll();
+        $categories = $em->getRepository(Category::class)->findAll();
 
+        $days = $em->getRepository(Schedule::class)->findAll();
         return $this->render('full_menu/index.html.twig', [
+            'days' => $days,
             'dishes' => $dishes,
+            'categories' => $categories,
         ]);
     }
 }

@@ -1,7 +1,7 @@
 {
     "controllers": {
-        "@symfony/ux-chartjs": {
-            "chart": {
+        "@symfony/ux-react": {
+            "react": {
                 "enabled": true,
                 "fetch": "eager"
             }

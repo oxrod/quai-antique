@@ -19,7 +19,7 @@ class FormulaCrudController extends AbstractCrudController
     {
         return [
             TextField::new('title'),
-            TextEditorField::new('description'),
+            TextField::new('description'),
             NumberField::new('price'),
         ];
     }

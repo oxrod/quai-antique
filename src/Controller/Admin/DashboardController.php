@@ -2,9 +2,11 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Category;
 use App\Entity\Dish;
 use App\Entity\Formula;
 use App\Entity\Menu;
+use App\Entity\Schedule;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -64,6 +66,10 @@ class DashboardController extends AbstractDashboardController
 
             MenuItem::section('Cuisine'),
             MenuItem::linkToCrud('Plats', 'fa-solid fa-fish', Dish::class),
+            MenuItem::linkToCrud('Catégories', '', Category::class),
+
+            MenuItem::section(('Horaires')),
+            MenuItem::linkToCrud('Panneau horaires', '',Schedule::class)
         ];
         // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
     }

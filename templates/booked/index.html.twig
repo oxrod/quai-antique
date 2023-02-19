@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Réservé ! | Quai Antique{% endblock %}
+
+{% block body %}
+    <div class="container-fluid d-flex">
+        <div class="card mx-auto w-auto">
+            <div class="card-header text-success">
+                Réservation réussie
+            </div>
+            <div class="card-body text-center mx-auto">
+                <h3 class="card-title fw-bold mb-3">Voici un résumé de votre réservation : </h3>
+                <h5 class="card-text border fw-bold">Réservation au nom de : </h5>
+                <p class="text-center mx-auto">{{ booking_name }}</p>
+
+                <h5 class="card-text fw-bold border">Date :</h5>
+                <p class="text-center">{{ booking_date }}</p>
+
+                <h5 class="card-text border fw-bold">Heure de la réservation : </h5>
+                <p class="text-center mx-auto">{{ booking_time }}</p>
+
+                <h5 class="card-text border fw-bold">Avec comme allergies mentionnées : </h5>
+                <ul class="booked_allergy_list">
+                    {% for allergy in booking_allergies %}
+                        <li>{{ allergy.name }}</li>
+                    {% endfor %}
+                </ul>
+                {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <div class="alert alert-danger mb-0">
+                        Attention ! Notez bien ces informations car vous ne pourrez pas les retrouver.<br> Pour cela,
+                        vous devez au préalable vous <a
+                                href="{{ path('app_login') }}">connecter</a>.
+                    </div>
+                {% else %}
+                    <div class="alert alert-primary">Réservation enregistrée dans votre <a
+                                href="{{ path('app_profile') }}">profil</a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

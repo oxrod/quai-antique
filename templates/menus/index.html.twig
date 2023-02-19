@@ -7,8 +7,7 @@
     <hr class="mx-auto custom-title-underline">
     <div class="d-flex flex-column align-items-center">
         <div
-                class=" menus-container
-                        text-center w-75"
+                class=" menus-container text-center"
         >
             {% for menu in menus %}
                 <div class="menu-item mb-4 pb-3">
@@ -17,7 +16,7 @@
                         <hr class="mx-auto custom-title-underline">
                     </h1>
                     {% for formula in menu.formulas %}
-                        <div class="formula-item w-50 mx-auto mb-2">
+                        <div class="formula-item mx-auto mb-2">
                             <h1>{{ formula.title }}</h1>
                             <p>{{ formula.description }}</p>
                             <p>{{ formula.price }} €</p>
