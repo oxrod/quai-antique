@@ -22,9 +22,7 @@ class DishCrudController extends AbstractCrudController
         yield TextField::new('title');
         yield TextField::new('description');
         yield TextField::new('price');
-        yield ImageField::new('image')
-            ->setBasePath('uploads/images')
-            ->setUploadDir('public/uploads/images');
+        yield AssociationField::new('category');
         yield BooleanField::new('isFeatured');
 
     }
