@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Dish;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
@@ -24,9 +25,10 @@ class DishCrudController extends AbstractCrudController
         return [
             TextField::new('title'),
             TextField::new('description'),
-            NumberField::new('price')->setNumDecimals(2)->setStoredAsString(),
+            TextField::new('price'),
             AssociationField::new('category'),
             ImageField::new('image')->setUploadDir('public/uploads/images')->setBasePath('uploads/images'),
+            BooleanField::new('isFeatured')
         ];
     }
 
