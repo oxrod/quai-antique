@@ -6,7 +6,7 @@ use App\Entity\Allergy;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
-class Allergyfixture extends Fixture
+class AllergyFixture extends Fixture
 {
 
     /**
