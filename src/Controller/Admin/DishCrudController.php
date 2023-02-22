@@ -3,12 +3,14 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Dish;
+use App\Field\VichImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Form\Type\FileUploadType;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class DishCrudController extends AbstractCrudController
 {
@@ -24,8 +26,8 @@ class DishCrudController extends AbstractCrudController
         yield TextField::new('description');
         yield TextField::new('price');
         yield AssociationField::new('category');
-        yield ImageField::new('image')->setBasePath('uploads/images')->setUploadDir('public/uploads/images')
-            ->setFormType(FileUploadType::class);
+        yield VichImageField::new('image')->hideOnForm();
+        yield VichImageField::new('imageFile')->onlyOnForms();
         yield BooleanField::new('isFeatured');
 
     }
