@@ -2,9 +2,11 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Allergy;
+use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
-class Allergyfixture extends \Doctrine\Bundle\FixturesBundle\Fixture
+class Allergyfixture extends Fixture
 {
 
     /**
@@ -12,6 +14,14 @@ class Allergyfixture extends \Doctrine\Bundle\FixturesBundle\Fixture
      */
     public function load(ObjectManager $manager)
     {
-        // TODO: Implement load() method.
+        $allergiesSample = ['Arachides', 'Mollusques', 'Gluten', 'Lactose'];
+
+        foreach ($allergiesSample as $allergy) {
+            $allergyEntity = new Allergy();
+            $allergyEntity->setName($allergy);
+            $manager->persist($allergyEntity);
+        }
+
+        $manager->flush();
     }
 }

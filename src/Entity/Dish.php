@@ -30,11 +30,12 @@ class Dish
     #[ORM\ManyToOne(inversedBy: 'dishes')]
     private ?Category $category = null;
 
-    #[Vich\UploadableField(mapping: 'dishes', fileNameProperty: 'image')]
-    private ?File $imageFile = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $image = null;
+
+    #[Vich\UploadableField(mapping: 'dishes', fileNameProperty: 'image')]
+    private ?File $imageFile = null;
 
     #[ORM\Column]
     private ?bool $isFeatured = null;
