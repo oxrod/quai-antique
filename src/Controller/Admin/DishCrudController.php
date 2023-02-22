@@ -26,7 +26,7 @@ class DishCrudController extends AbstractCrudController
             TextField::new('description'),
             NumberField::new('price')->setNumDecimals(2)->setStoredAsString(),
             AssociationField::new('category'),
-            ImageField::new('image')->setUploadDir('public/uploads/images')->setBasePath('public/uploads/images'),
+            ImageField::new('image')->setUploadDir('public/uploads/images')->setBasePath('uploads/images'),
         ];
     }
 

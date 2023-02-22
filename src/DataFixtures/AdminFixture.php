@@ -27,6 +27,10 @@ class AdminFixture extends \Doctrine\Bundle\FixturesBundle\Fixture
                     'admin'
                 )
             )
+            ->setEmail('admin@admin.com')
             ->setRoles(["ROLE_ADMIN"]);
+
+        $manager->persist($dummyAdmin);
+        $manager->flush();
     }
 }
