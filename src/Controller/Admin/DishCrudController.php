@@ -6,6 +6,7 @@ use App\Entity\Dish;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
@@ -20,16 +21,16 @@ class DishCrudController extends AbstractCrudController
     }
 
 
-    public function configureFields(string $pageName): iterable
-    {
-        return [
-            TextField::new('title'),
-            TextField::new('description'),
-            TextField::new('price'),
-            AssociationField::new('category'),
-            ImageField::new('image')->setUploadDir('public/uploads/images')->setBasePath('uploads/images'),
-            BooleanField::new('isFeatured')
-        ];
-    }
+//    public function configureFields(string $pageName): iterable
+//    {
+//        return [
+//            TextField::new('title'),
+//            TextField::new('description'),
+//            TextField::new('price'),
+//            AssociationField::new('category'),
+//            TextField::new('image'),
+//            BooleanField::new('isFeatured')
+//        ];
+//    }
 
 }
