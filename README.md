@@ -1,7 +1,7 @@
 # Quai antique
 ## *Attention !* Ce projet a été réalisé dans le cadre d'une évaluation en cours de formation. Les images utilisées sont toutes libres de droit, en revanche le contenu est totalement factice et n'existe que pour faire apparaître la structure globale de l'application.
 
-Aperçu du site ici : [ici](https://main-bvxea6i-y6abdwsrxxose.fr-3.platformsh.site/)
+Aperçu du site ici : [ici](https://quai-antique.trystan-rolland.fr/)
 
 ### Prérequis :
 - **XAMPP**, **Composer** et **NPM** installés sur la machine hôte
